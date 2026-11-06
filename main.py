@@ -21,8 +21,12 @@ async def on_ready():
 
 # Các lệnh của bot
 @bot.command()
-async def start(ctx, scene_id: str):
-    # Lấy ID từ chính Discord user thay vì bắt nhập thủ công
+async def start(ctx, scene_id: str = None):
+    # Nếu người dùng không nhập scene_id, hãy gửi hướng dẫn
+    if scene_id is None:
+        await ctx.send("Vui lòng chỉ định scene để bắt đầu. Ví dụ: `!start dark_forest`")
+        return
+        
     discord_player_id = str(ctx.author.id)
     response = await dnd_logic.handle_start(discord_player_id, scene_id)
     await ctx.send(response)
@@ -33,7 +37,11 @@ async def status(ctx):
     await ctx.send(response)
 
 @bot.command()
-async def attack(ctx, *, weapon: str):
+async def attack(ctx, weapon: str = None):
+    if weapon is None:
+        await ctx.send("Bạn định tấn công bằng gì? Ví dụ: `!attack sword`")
+        return
+        
     response = await dnd_logic.handle_attack(str(ctx.author.id), weapon)
     await ctx.send(response)
 
