@@ -1,0 +1,26 @@
+
+modules = ["python-3.12"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["cacert"]
+
+[workflows]
+
+[[workflows.workflow]]
+name = "bottt"
+mode = "sequential"
+author = 25406977
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -u main.py"
+
+[[workflows.workflow]]
+name = "bel"
+mode = "sequential"
+author = 25406977
+
+[[workflows.workflow.tasks]]
+task = "packager.installForLanguage"
+args = "python3"
