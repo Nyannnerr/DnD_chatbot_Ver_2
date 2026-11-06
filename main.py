@@ -21,18 +21,20 @@ async def on_ready():
 
 # Các lệnh của bot
 @bot.command()
-async def start(ctx, player_id: str, scene_id: str):
-    response = await dnd_logic.handle_start(player_id, scene_id)
+async def start(ctx, scene_id: str):
+    # Lấy ID từ chính Discord user thay vì bắt nhập thủ công
+    discord_player_id = str(ctx.author.id)
+    response = await dnd_logic.handle_start(discord_player_id, scene_id)
     await ctx.send(response)
 
 @bot.command()
 async def status(ctx):
-    response = await dnd_logic.handle_status()
+    response = await dnd_logic.handle_status(str(ctx.author.id))
     await ctx.send(response)
 
 @bot.command()
 async def attack(ctx, *, weapon: str):
-    response = await dnd_logic.handle_attack(weapon)
+    response = await dnd_logic.handle_attack(str(ctx.author.id), weapon)
     await ctx.send(response)
 
 # Chạy bot

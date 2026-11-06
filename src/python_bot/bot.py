@@ -12,27 +12,31 @@ class DnDBot:
             return f"Game started! Welcome {player['name']} the {player['class']}. Location: {self.engine.current_scene['location']}"
         return "Failed to start game."
 
-    async def handle_status(self):
+    async def handle_status(self, player_id):
+        self.engine.active_player_id = player_id
         if not self.engine.active_player_id:
             return "No active game."
         player = self.engine.get_player(self.engine.active_player_id)
+        if not player:
+            return "Player not found. Use !start to begin."
         eff_hp = self.engine.get_effective_hp(self.engine.active_player_id)
         trait = self.engine.get_class_trait(player['class'])
         return f"Status: {player['name']} ({player['class']}), HP: {eff_hp}. Trait: {trait}"
 
-    async def handle_attack(self, weapon_type):
+    async def handle_attack(self, player_id, weapon_type):
+        self.engine.active_player_id = player_id
         if not self.engine.active_player_id:
             return "No active game."
         
         player = self.engine.get_player(self.engine.active_player_id)
+        if not player:
+            return "Player not found. Use !start to begin."
         class_data = self.engine.get_class_data(player['class'])
         
         modifier_type = 'strength' if class_data.get('is_melee') else 'dexterity'
         
-        # Base damage
         damage = self.engine.calculate_damage(self.engine.active_player_id, 8, modifier_type)
         
-        # Apply trait bonus (Simple simulation)
         if player['class'] == 'fighter':
             damage += 2
         elif player['class'] == 'mage':
