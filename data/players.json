@@ -1,0 +1,25 @@
+{
+    "player_1": {
+        "name": "Aragorn",
+        "hp": 100,
+        "max_hp": 100,
+        "strength": 18,
+        "dexterity": 14,
+        "level": 5,
+        "class": "fighter",
+        "inventory": [
+            {
+                "name": "Longsword",
+                "item_type": "weapon",
+                "quantity": 1,
+                "rarity": "common"
+            },
+            {
+                "name": "Health Potion",
+                "item_type": "consumable",
+                "quantity": 3,
+                "rarity": "common"
+            }
+        ]
+    }
+}

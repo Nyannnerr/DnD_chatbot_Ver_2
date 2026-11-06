@@ -1,0 +1,16 @@
+[
+    {
+        "id": "scene_001",
+        "location": "Dark Forest",
+        "difficult": 5,
+        "max_encounter": 3,
+        "elite_chance": 0.2
+    },
+    {
+        "id": "scene_002",
+        "location": "Abandoned Castle",
+        "difficult": 8,
+        "max_encounter": 5,
+        "elite_chance": 0.5
+    }
+]

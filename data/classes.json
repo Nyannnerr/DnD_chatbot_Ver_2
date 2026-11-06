@@ -1,0 +1,26 @@
+{
+    "fighter": {
+        "is_melee": true,
+        "primary_stats": ["strength", "constitution"],
+        "hp_bonus": 20,
+        "trait": "Martial Prowess: +2 damage on melee attacks."
+    },
+    "archer": {
+        "is_melee": false,
+        "primary_stats": ["dexterity", "wisdom"],
+        "hp_bonus": 5,
+        "trait": "Precision: +10% critical hit chance."
+    },
+    "mage": {
+        "is_melee": false,
+        "primary_stats": ["intelligence", "wisdom"],
+        "hp_bonus": -5,
+        "trait": "Arcane Mastery: Spells deal 1.5x damage."
+    },
+    "paladin": {
+        "is_melee": true,
+        "primary_stats": ["strength", "charisma"],
+        "hp_bonus": 15,
+        "trait": "Holy Aura: Heal 5 HP every 3 turns."
+    }
+}
