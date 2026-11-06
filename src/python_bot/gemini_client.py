@@ -1,5 +1,5 @@
 import os
-from tools import tools_definition
+from src.python_bot.tools import tools_definition
 
 class GeminiClient:
     def __init__(self):
