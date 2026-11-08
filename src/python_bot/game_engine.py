@@ -11,9 +11,6 @@ class GameEngine:
         self.scenes = self.load_json(scenes_path)
         self.players = self.load_json(players_path)
         self.classes = self.load_json(classes_path)
-        self.active_player_id = None
-        self.current_scene = None
-        self.active_enemies = []
 
     def load_json(self, path):
         if not os.path.exists(path):
@@ -50,10 +47,8 @@ class GameEngine:
 
     def start_game(self, player_id, scene_id):
         if player_id in self.players:
-            self.active_player_id = player_id
-            self.current_scene = self.get_scene(scene_id)
-            return True
-        return False
+            return self.get_scene(scene_id)
+        return None
 
     def get_player(self, player_id):
         return self.players.get(player_id)
@@ -73,6 +68,16 @@ class GameEngine:
         bonus = class_data.get('hp_bonus', 0) if class_data else 0
         
         return player['hp'] + bonus
+
+    def calculate_class_damage(self, player_id, damage):
+        player = self.get_player(player_id)
+        if not player: return damage
+        
+        if player['class'] == 'fighter':
+            return damage + 2
+        elif player['class'] == 'mage':
+            return int(damage * 1.5)
+        return damage
 
     def get_scene(self, scene_id):
         for scene in self.scenes:
