@@ -3,7 +3,14 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from src.python_bot.bot import DnDBot
+=======
+
+from src.python_bot.bot import DnDBot
+import asyncio
+from src.python_bot.bot import DnDBot # Điều chỉnh import tùy theo cấu trúc thư mục của bạn
+>>>>>>> 2af3bb8 (me)
 
 load_dotenv()
 
